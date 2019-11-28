@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Seguro Fiança</title>
+    <title>Leilão</title>
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-    <h1>Seguro Fiança</h1>
-    <h2>Status do Contrato</h2>
+    <h1>Leilão</h1>
+    <h2>Status do Leilão</h2>
     <div>O contrato é: 0xd406234a708A7B11787d80b227ab3FAA7F975311</div>
-    <div>A situação de pagamento é: <span id="campoStatus">&nbsp;</span></div>
-    <div>O valor do aluguel é: <span id="campoValorAluguel">&nbsp;</span></div>
+    <div>A situação de Lance é: <span id="campoStatus">&nbsp;</span></div>
+    <div>O valor do Lance é: <span id="campoLance">&nbsp;</span></div>
     <hr>
     <h1>Formulário de status do contrato</h1>
     <form action="#" method="get" id="frmStatus" name="frmStatus" onsubmit="registrarMudancaStatus(); return false;">
         <div>
-            <label for="txtStatusPagamentoAluguel">Informe o novo Status: </label>
-            <input type="text" name="txtStatusPagamentoAluguel" id="txtStatusPagamentoAluguel" maxlength="8">
+            <label for="txtStatusLance">Informe o novo Status: </label>
+            <input type="text" name="txtStatusLance" id="txtStatusLance" maxlength="8">
         </div>
         <div>
             &nbsp;
@@ -38,27 +38,31 @@
     <script>
         var status;
         var campoStatus = document.getElementById("campoStatus"); 
-        var campoValorAluguel = document.getElementById("campoValorAluguel");
-        contrato.statusPagamentoAluguel()
-            .then( (resultado) => {
+        var campoLance = document.getElementById("campoLance");
+        contrato.statusLance()
+            .then( (resultado) => 
+            {
                 campoStatus.innerHTML = resultado;
             })
-            .catch( (err) => {
+            .catch( (err) => 
+            {
                 console.error(err);
                 campoStatus.innerHTML = err;
             });   
-        contrato.valorAluguel()
-            .then( (valorAluguel) => {
-                campoValorAluguel.innerHTML = valorAluguel;
+        contrato.Lance()
+            .then( (Lance) => 
+            {
+                campoLance.innerHTML = Lance;
             })
-            .catch( (err) => {
+            .catch( (err) => 
+            {
                 console.error(err);
-                campoValorAluguel.innerHTML = err;
+                campoLance.innerHTML = err;
             });                                       
     </script>
 
-<h1>Formulário de encerrar contrato</h1>
-    <form action="#" method="get" id="frmEncerrar" name="frmEncerrar" onsubmit="encerrarContrato(); return false;">
+<h1>Formulário de encerrar leilao</h1>
+    <form action="#" method="get" id="frmEncerrar" name="frmEncerrar" onsubmit="encerrarLeilão(); return false;">
         <div>
         <br>
         </div>
@@ -66,10 +70,10 @@
             &nbsp;
         </div>
         <div>
-            <button type="submit">Encerrar Contrato</button>
+            <button type="submit">Encerrar Leilão</button>
         </div>
         <div><br><hr></div>
-        <div id="encerrarContrato">
+        <div id="encerrarLeilão">
             &nbsp;
         </div>
     </form>
