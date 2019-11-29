@@ -10,27 +10,38 @@
 <body>
     <h1>Leilão</h1>
     <h2>Status do Leilão</h2>
-    <div>O contrato é: 0xd406234a708A7B11787d80b227ab3FAA7F975311</div>
-    <div>A situação de Lance é: <span id="campoStatus">&nbsp;</span></div>
-    <div>O valor do Lance é: <span id="campoLance">&nbsp;</span></div>
+<div>O número do contrato é: "0x8a3Bf641809CDEc7FaD2ad8501969E3cFEebEEf6"</div>
+<br/>
+<br/>
+    <div>A situação do Leilão é: <span id="campoStatus">&nbsp;</span></div>
+    <br/>
+    <div>O valor do último Lance é: <span id="maiorLance">&nbsp;</span></div>
+    <br/>
     <hr>
-    <h1>Formulário de status do contrato</h1>
-    <form action="#" method="get" id="frmStatus" name="frmStatus" onsubmit="registrarMudancaStatus(); return false;">
+        </div>
         <div>
-            <label for="txtStatusLance">Informe o novo Status: </label>
-            <input type="text" name="txtStatusLance" id="txtStatusLance" maxlength="8">
+            &nbsp;
+        </div>
+
+    </form>
+    <h1>Formulário de Lances</h1>
+    <form action="#" method="get" id="Lance" name="Lance" onsubmit="registrarMudancaStatus(); return false;">
+        <div>
+            <label for="Lance">Oferte um novo Lance: </label>
+            <input id="Lance" type= "number">
         </div>
         <div>
             &nbsp;
         </div>
         <div>
-            <button type="submit">Registrar Novo Status</button>
+            <button type="submit">Registrar Lance</button>
         </div>
         <div><br><hr></div>
         <div id="caixaStatusTx">
             &nbsp;
         </div>
     </form>
+
     <p>&nbsp;</p>
     <script charset="utf-8"  src="https://cdn.ethers.io/scripts/ethers-v4.min.js" type="text/javascript"></script>
     <script src="javascript/abi.js"></script>    
@@ -61,7 +72,7 @@
             });                                       
     </script>
 
-<h1>Formulário de encerrar leilao</h1>
+<h1>Encerramento do leilao</h1>
     <form action="#" method="get" id="frmEncerrar" name="frmEncerrar" onsubmit="encerrarLeilão(); return false;">
         <div>
         <br>
