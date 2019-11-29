@@ -1,10 +1,10 @@
-var enderecoLeiloeiro = "0xe1cE371b954F2B9d4E24DF3CB554b9A5ced68d57";
+var enderecoContrato = "0x8a3Bf641809CDEc7FaD2ad8501969E3cFEebEEf6";
 var provedor = new ethers.providers.Web3Provider(web3.currentProvider);
 ethereum.enable();
 var signatario = provedor.getSigner();
-var contrato = new ethers.Contract(enderecoLeiloeiro, abiContrato, signatario);
+var contrato = new ethers.Contract(enderecoContrato, abiContrato, signatario);
 
-function registrarMudancaStatus() {
+function registrarStatusLance() {
     var textoCampo = document.frmStatus.txtStatusLance.value;
     var caixaStatusTx = document.getElementById("caixaStatusTx");
     if (textoCampo.length === 8) {
