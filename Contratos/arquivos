@@ -10,14 +10,14 @@ contract Leilao
         bool jaFoiReembolsado;
     }
     
-    address payable public contaLeiloeiro;
-    uint public prazoFinalLeilao;
+    address payable public Conta Leiloeiro;
+    uint public DataEncerramento;
 
     address public maiorOfertante;
     uint public maiorLance;
 
     mapping(address => Ofertante) public listaOfertantes;
-    Ofertante[] public ofertantes;
+    Ofertante[] public ofertante;
 
     bool public encerrado;
 
@@ -26,23 +26,23 @@ contract Leilao
 
     modifier somenteLeiroeiro 
     {
-        require(msg.sender == contaLeiloeiro, "Somente o Leiloeiro pode realizar essa operacao");
+        require(msg.sender == Conta Leiloeiro, "Somente o Leiloeiro pode realizar essa operacao");
         _;
     }
 
     constructor
     ( uint _duracaoLeilao,
-        address payable _contaLeiroeiro
+        address payable _Conta Leiroeiro
     ) public 
     {
-        contaLeiloeiro = _contaLeiroeiro;
+        contaLeiloeiro = _Conta Leiroeiro;
         prazoFinalLeilao = now + _duracaoLeilao;
     }
 
 
     function lance(string memory nomeOfertante, address payable enderecoCarteiraOfertante) public payable 
         {
-        require(now <= prazoFinalLeilao, "Leilao encerrado.");
+        require(now <= DataEncerramento, "Leilao encerrado.");
         require(msg.value > maiorLance, "Ja foram apresentados lances maiores.");
         
         maiorOfertante = msg.sender;
@@ -70,12 +70,12 @@ contract Leilao
    
     function finalizaLeilao() public somenteLeiroeiro {
        
-        require(now >= prazoFinalLeilao, "Leilao ainda nao encerrado.");
+        require(now >= DataEncerramento, "Leilao ainda nao encerrado.");
         require(!encerrado, "Leilao encerrado.");
 
         encerrado = true;
         emit fimDoLeilao(maiorOfertante, maiorLance);
 
-        contaLeiloeiro.transfer(address(this).balance);
+        Conta Leiloeiro.transfer(address(this).balance);
     }
 }
