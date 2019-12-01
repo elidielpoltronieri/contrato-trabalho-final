@@ -1,73 +1,22 @@
-var enderecoContrato = "0xd4c80e0cd499f23db47250e8df95fd74d433c68e";
+var enderecoContrato = "0xe4672e2c66afd63f51687e79d909dd61d350cad2";
 var provedor = new ethers.providers.Web3Provider(web3.currentProvider);
 ethereum.enable();
 var signatario = provedor.getSigner();
 var contrato = new ethers.Contract(enderecoContrato, abiContrato, signatario);
 
-function registrarStatusLance() {
-    var textoCampo = document.frmStatus.txtStatusLance.value;
-    var caixaStatusTx = document.getElementById("caixaStatusTx");
-    if (textoCampo.length === 8) {
-        caixaStatusTx.innerHTML = "Enviando transação...";
-        contrato.mudaStatusLance(textoCampo)
-        .then( (transacao) => {
-            console.log("registrarMudancaStatus - Transacao ", transacao);   
-            caixaStatusTx.innerHTML = "Transação enviada. Aguardando processamento...";
-            transacao.wait()
-            .then( (resultado) => {
-                buscaStatusContrato();
-                caixaStatusTx.innerHTML = "Transação realizada.";
-            })        
-            .catch( (err) => {
-                console.error("registrarMudancaStatus - Aguardando tx ser minerada");
-                console.error(err);
-                caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
-            })
-        })
-        .catch( (err) => {
-            console.error("registrarMudancaStatus");
-            console.error(err);
-            caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
-        })
+var _ContaLeiroeiro = /* var of type address here */ ;
+var _duracaoLeilao = /* var of type uint256 here */ ;
+var leilaoContract = web3.eth.contract([{"inputs":[{"internalType":"address payable","name":"_ContaLeiroeiro","type":"address"},{"internalType":"uint256","name":"_duracaoLeilao","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"arrematante","type":"address"},{"indexed":false,"internalType":"uint256","name":"valor","type":"uint256"}],"name":"fimDoLeilao","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"ofertante","type":"address"},{"indexed":false,"internalType":"uint256","name":"valor","type":"uint256"}],"name":"novoMaiorLance","type":"event"},{"constant":true,"inputs":[],"name":"ContaLeiloeiro","outputs":[{"internalType":"address payable","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"DataEncerramento","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"encerrado","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"finalizaLeilao","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"string","name":"nomeOfertante","type":"string"},{"internalType":"address payable","name":"enderecoCarteiraOfertante","type":"address"}],"name":"lance","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"maiorLance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"maiorOfertante","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"ofertante","outputs":[{"internalType":"string","name":"nome","type":"string"},{"internalType":"address payable","name":"enderecoCarteira","type":"address"},{"internalType":"uint256","name":"oferta","type":"uint256"},{"internalType":"bool","name":"jaFoiReembolsado","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]);
+var leilao = leilaoContract.new(
+   _ContaLeiroeiro,
+   _duracaoLeilao,
+   {
+     from: web3.eth.accounts[0], 
+     data: '0x608060405234801561001057600080fd5b50604051610d52380380610d528339818101604052604081101561003357600080fd5b810190808051906020019092919080519060200190929190505050816000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508042016001819055505050610caa806100a86000396000f3fe60806040526004361061007b5760003560e01c8063af178ea41161004e578063af178ea414610184578063b46e98b11461019b578063b730ec2614610276578063ff77d0861461036f5761007b565b806328956a241461008057806329e0c347146100d75780637237057b14610102578063818055e514610159575b600080fd5b34801561008c57600080fd5b5061009561039e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100e357600080fd5b506100ec6103c4565b6040518082815260200191505060405180910390f35b34801561010e57600080fd5b506101176103ca565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561016557600080fd5b5061016e6103ef565b6040518082815260200191505060405180910390f35b34801561019057600080fd5b506101996103f5565b005b610274600480360360408110156101b157600080fd5b81019080803590602001906401000000008111156101ce57600080fd5b8201836020820111156101e057600080fd5b8035906020019184600183028401116401000000008311171561020257600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610610565b005b34801561028257600080fd5b506102af6004803603602081101561029957600080fd5b8101908080359060200190929190505050610a56565b60405180806020018573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200184815260200183151515158152602001828103825286818151815260200191508051906020019080838360005b83811015610331578082015181840152602081019050610316565b50505050905090810190601f16801561035e5780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b34801561037b57600080fd5b50610384610b58565b604051808215151515815260200191505060405180910390f35b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60035481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60015481565b60015442111561046d576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260108152602001807f4c65696c616f20656e6365727261646f0000000000000000000000000000000081525060200191505060405180910390fd5b6001600660006101000a81548160ff021916908315150217905550600154421015610500576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f4c65696c616f2061696e6461206e616f20656e6365727261646f2e000000000081525060200191505060405180910390fd5b7f426a1026271336df1d0c727446292430b3acd2a75827d684e07167fdf316a668600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600354604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a16000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f1935050505015801561060d573d6000803e3d6000fd5b50565b600154421115610688576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f4c65696c616f20656e6365727261646f2e00000000000000000000000000000081525060200191505060405180910390fd5b60035434116106e2576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526025815260200180610c516025913960400191505060405180910390fd5b33600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055503460038190555060008090505b60058054905081101561080d5760006005828154811061074c57fe5b906000526020600020906004020190508060030160009054906101000a900460ff166107ff578060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc82600201549081150290604051600060405180830381858888f193505050501580156107e0573d6000803e3d6000fd5b5060018160030160006101000a81548160ff0219169083151502179055505b508080600101915050610730565b50610816610b6b565b60405180608001604052808481526020018373ffffffffffffffffffffffffffffffffffffffff16815260200134815260200160001515815250905060058190806001815401808255809150509060018203906000526020600020906004020160009091929091909150600082015181600001908051906020019061089c929190610bab565b5060208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506040820151816002015560608201518160030160006101000a81548160ff0219169083151502179055505050508060046000836020015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000820151816000019080519060200190610971929190610bab565b5060208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506040820151816002015560608201518160030160006101000a81548160ff0219169083151502179055509050507f41d5e7af747a4204f9ba2cf3e3043626a09e76b48bc8ad4374c556f011bfc2f43334604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a1505050565b60058181548110610a6357fe5b9060005260206000209060040201600091509050806000018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610b0f5780601f10610ae457610100808354040283529160200191610b0f565b820191906000526020600020905b815481529060010190602001808311610af257829003601f168201915b5050505050908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060020154908060030160009054906101000a900460ff16905084565b600660009054906101000a900460ff1681565b604051806080016040528060608152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001600081526020016000151581525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610bec57805160ff1916838001178555610c1a565b82800160010185558215610c1a579182015b82811115610c19578251825591602001919060010190610bfe565b5b509050610c279190610c2b565b5090565b610c4d91905b80821115610c49576000816000905550600101610c31565b5090565b9056fe4a6120666f72616d206170726573656e7461646f73206c616e636573206d61696f7265732ea265627a7a723158207636249cdb7fd91b9dc391c5552bf9424e6c85deb722b79f4d310b2f19d237bf64736f6c634300050c0032', 
+     gas: '4700000'
+   }, function (e, contract){
+    console.log(e, contract);
+    if (typeof contract.address !== 'undefined') {
+         console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
     }
-}
-
-function buscaStatusContrato() {
-    var status;
-    var campoStatus = document.getElementById("campoStatus");     
-    contrato.statusLance()
-    .then( (resultado) => {
-        campoStatus.innerHTML = resultado;
-    })
-    .catch( (err) => {
-        console.error(err);
-        campoStatus.innerHTML = err;
-    });
-
-function encerrarLeilao() {
-    var textoEncerrar = document.getElementById("frmEncerrar");
-    textoEncerrar.innerHTML = "Conectando para encerramento do Leilão...";
-        contrato.fimDoLeilao()
-        .then( (transacao) => {
-            console.log("encerrarLeilao - Transacao ", transacao);   
-            textoEncerrar.innerHTML = "encerrando o leilão..."
-            transacao.wait()
-            .then( (resultado) => {
-                buscaFimContrato();
-                textoEncerrar.innerHTML = "Leilão Encerrado";
-            })        
-            .catch( (err) => {
-                console.error("encerrarLeilao - Aguardando tx ser minerada");
-                console.error(err);
-                textoEncerrar.innerHTML = "Erro ao se conectar minerar";
-            })
-        })
-        .catch( (err) => {
-            console.error("encerrarLeilao - Aguardando tx ser minerada");
-            console.error(err);
-            textoEncerrar.innerHTML = "Erro ao se conectar minerar";
-        })
-    }
-}
-
-}
+ })
