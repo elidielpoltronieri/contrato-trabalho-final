@@ -16,8 +16,8 @@ contract Leilao
     address public maiorOfertante;
     uint public maiorLance;
 
-    mapping(address => Ofertante) listaOfertante;
-    Ofertante[] public ofertante;
+    mapping(address => Ofertante) listaOfertantes;
+    Ofertante[] public ofertantes;
 
     bool public encerrado;
 
@@ -43,14 +43,14 @@ contract Leilao
     function lance(string memory nomeOfertante, address payable enderecoCarteiraOfertante) public payable 
     {
         require(now <= DataEncerramento, "Leilao encerrado.");
-        require(msg.value > maiorLance, "Ja foram apresentados lances maiores.");
+        require(msg.value > maiorLance, "Ja foi apresentado lance maior.");
         
         maiorOfertante = msg.sender;
         maiorLance = msg.value;
         
-        for (uint i=0; i<ofertante.length; i++) 
+        for (uint i=0; i<ofertantes.length; i++) 
         {
-            Ofertante storage ofertantePerdedor = ofertante[i];
+            Ofertante storage ofertantePerdedor = ofertantes[i];
             if (!ofertantePerdedor.jaFoiReembolsado) 
             {
                 ofertantePerdedor.enderecoCarteira.transfer(ofertantePerdedor.oferta);
@@ -60,9 +60,9 @@ contract Leilao
         
         Ofertante memory ofertanteVencedorTemporario = Ofertante(nomeOfertante, enderecoCarteiraOfertante, msg.value, false);
         
-        ofertante.push(ofertanteVencedorTemporario);
+        ofertantes.push(ofertanteVencedorTemporario);
         
-        listaOfertante[ofertanteVencedorTemporario.enderecoCarteira] = ofertanteVencedorTemporario;
+        listaOfertantes[ofertanteVencedorTemporario.enderecoCarteira] = ofertanteVencedorTemporario;
     
         emit novoMaiorLance (msg.sender, msg.value);
         
