@@ -1,62 +1,14 @@
-var abiContrato = [
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "fimDoContrato",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_descricao",
-				"type": "string"
-			}
-		],
-		"name": "mudaStatusPagamento",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "pagarFianca",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
+[
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "_locador",
-				"type": "string"
-			},
-			{
 				"internalType": "address payable",
-				"name": "_enderecoLocador",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_locatario",
-				"type": "string"
-			},
-			{
-				"internalType": "address payable",
-				"name": "_enderecoLocatario",
+				"name": "_ContaLeiroeiro",
 				"type": "address"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_valorAluguel",
+				"name": "_duracaoLeilao",
 				"type": "uint256"
 			}
 		],
@@ -65,24 +17,47 @@ var abiContrato = [
 		"type": "constructor"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "contratoAtivo",
-		"outputs": [
+		"anonymous": false,
+		"inputs": [
 			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
+				"indexed": false,
+				"internalType": "address",
+				"name": "arrematante",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "valor",
+				"type": "uint256"
 			}
 		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+		"name": "fimDoLeilao",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "ofertante",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "valor",
+				"type": "uint256"
+			}
+		],
+		"name": "novoMaiorLance",
+		"type": "event"
 	},
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "enderecoLocador",
+		"name": "ContaLeiloeiro",
 		"outputs": [
 			{
 				"internalType": "address payable",
@@ -97,12 +72,12 @@ var abiContrato = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "enderecoLocatario",
+		"name": "DataEncerramento",
 		"outputs": [
 			{
-				"internalType": "address payable",
+				"internalType": "uint256",
 				"name": "",
-				"type": "address"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -112,7 +87,7 @@ var abiContrato = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "fiancaPaga",
+		"name": "encerrado",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -125,9 +100,53 @@ var abiContrato = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [],
+		"name": "finalizaLeilao",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "nomeOfertante",
+				"type": "string"
+			},
+			{
+				"internalType": "address payable",
+				"name": "enderecoCarteiraOfertante",
+				"type": "address"
+			}
+		],
+		"name": "lance",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
-		"name": "imobiliaria",
+		"name": "maiorLance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "maiorOfertante",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -141,77 +160,38 @@ var abiContrato = [
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "locador",
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "ofertantes",
 		"outputs": [
 			{
 				"internalType": "string",
-				"name": "",
+				"name": "nome",
 				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "locatario",
-		"outputs": [
+			},
 			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "statusPagamentoAluguel",
-		"outputs": [
+				"internalType": "address payable",
+				"name": "enderecoCarteira",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "oferta",
+				"type": "uint256"
+			},
 			{
 				"internalType": "bool",
-				"name": "",
+				"name": "jaFoiReembolsado",
 				"type": "bool"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "valorAluguel",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "valorFianca",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
-];
+]
