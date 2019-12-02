@@ -82,3 +82,15 @@ contract Leilao
         ContaLeiloeiro.transfer(address(this).balance);
     }
 }
+
+
+//* function finalizaLeilao() public view returns(uint);
+    {
+        return string.DataEncerramento;
+        require(now >= DataEncerramento, "Leilao ainda nao encerrado.");
+        encerrado = true;
+    
+        emit fimDoLeilao (maiorOfertante, maiorLance);
+
+        ContaLeiloeiro.transfer(address(this).balance);
+    }
