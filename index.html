@@ -13,7 +13,7 @@
 <br/>
    <h2>Status do Leilão</h2>
     <div>O bem em oferta é: <span id="campoBem">&nbsp;</span></div>
-    <div>O lance mínimo é: <span id="campoStatus">&nbsp;</span></div>
+    <div>O lance mínimo é: <span id="campoLance">&nbsp;</span></div>
     <br/>
     <div>O valor do último Lance é: <span id="maiorLance">&nbsp;</span></div>
     <br/>
@@ -77,7 +77,7 @@
                 campoBem.innerHTML = err;
             });   
         
-        contrato.Lance()
+        contrato.lanceMinimo()
             .then( (Lance) => 
             {
                 campoLance.innerHTML = Lance;
