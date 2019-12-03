@@ -1,22 +1,5 @@
 [
 	{
-		"inputs": [
-			{
-				"internalType": "address payable",
-				"name": "_ContaLeiroeiro",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_duracaoLeilao",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -53,6 +36,77 @@
 		],
 		"name": "novoMaiorLance",
 		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "finalizaLeilao",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "nomeOfertante",
+				"type": "string"
+			},
+			{
+				"internalType": "address payable",
+				"name": "enderecoCarteiraOfertante",
+				"type": "address"
+			}
+		],
+		"name": "lance",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address payable",
+				"name": "_ContaLeiroeiro",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_lanceMinimo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_bem",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_duracaoLeilao",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "Bem",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"constant": true,
@@ -100,32 +154,18 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [],
-		"name": "finalizaLeilao",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
+		"name": "lanceMinimo",
+		"outputs": [
 			{
-				"internalType": "string",
-				"name": "nomeOfertante",
-				"type": "string"
-			},
-			{
-				"internalType": "address payable",
-				"name": "enderecoCarteiraOfertante",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "lance",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
