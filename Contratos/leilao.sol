@@ -11,6 +11,9 @@ contract Leilao
     }
     
     address payable public ContaLeiloeiro;
+    string public Bem;
+    
+    uint public lanceMinimo;
     uint public DataEncerramento;
 
     address public maiorOfertante;
@@ -32,10 +35,14 @@ contract Leilao
 
     constructor
     ( address payable _ContaLeiroeiro,
+        uint _lanceMinimo,
+        string memory _bem,
         uint _duracaoLeilao
     ) public 
     {
         ContaLeiloeiro = _ContaLeiroeiro;
+        Bem = _bem;
+        lanceMinimo = _lanceMinimo;
         // DataEncerramento: para um mes: 2629743; para um dia: 86400; para uma semana: 604800; para um min.: 60
         DataEncerramento = now + _duracaoLeilao;
     }
@@ -43,6 +50,7 @@ contract Leilao
     function lance(string memory nomeOfertante, address payable enderecoCarteiraOfertante) public payable 
     {
         require(now <= DataEncerramento, "Leilao encerrado.");
+        require(msg.value > lanceMinimo, "Ofertar lance maior.");
         require(msg.value > maiorLance, "Ja foi apresentado lance maior.");
         
         maiorOfertante = msg.sender;
@@ -71,11 +79,10 @@ contract Leilao
    
     function finalizaLeilao() public
     {
-        require(now <= DataEncerramento, "Leilao encerrado"); 
-        
-        encerrado = true;
-        
         require(now >= DataEncerramento, "Leilao ainda nao encerrado.");
+        require(!encerrado, "Leilao encerrado.");
+        encerrado = true;
+             
         
         emit fimDoLeilao (maiorOfertante, maiorLance);
 
