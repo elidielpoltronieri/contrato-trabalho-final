@@ -12,7 +12,7 @@
 <br/>
 <br/>
    <h2>Status do Leilão</h2>
-    <div>O bem em oferta é: <span id="campoStatus">&nbsp;</span></div>
+    <div>O bem em oferta é: <span id="campoBem">&nbsp;</span></div>
     <div>O lance mínimo é: <span id="campoStatus">&nbsp;</span></div>
     <br/>
     <div>O valor do último Lance é: <span id="maiorLance">&nbsp;</span></div>
@@ -64,18 +64,19 @@
     <script src="javascript/blockchain.js"></script>    
     <script>
         var status;
-        var campoStatus = document.getElementById("campoStatus"); 
+        var campoStatus = document.getElementById("campoBem"); 
         var campoLance = document.getElementById("campoLance");
-        contrato.statusLance()
+        contrato.Bem()
             .then( (resultado) => 
             {
-                campoStatus.innerHTML = resultado;
+                campoBem.innerHTML = resultado;
             })
             .catch( (err) => 
             {
                 console.error(err);
-                campoStatus.innerHTML = err;
+                campoBem.innerHTML = err;
             });   
+        
         contrato.Lance()
             .then( (Lance) => 
             {
@@ -85,7 +86,8 @@
             {
                 console.error(err);
                 campoLance.innerHTML = err;
-            });                                       
+            });       
+        
     </script>
 
 </body>
