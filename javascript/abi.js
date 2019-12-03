@@ -1,4 +1,4 @@
-[
+abiContrato = [
 	{
 		"anonymous": false,
 		"inputs": [
