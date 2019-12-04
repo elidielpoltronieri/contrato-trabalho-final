@@ -41,24 +41,7 @@
     </form>
 
     <p>&nbsp;</p>
-
-<h1>Encerramento do leilao</h1>
-    <form action="#" method="get" id="frmEncerrar" name="frmEncerrar" onsubmit="encerrarLeilão(); return false;">
-        <div>
-        <br>
-        </div>
-        <div>
-            &nbsp;
-        </div>
-        <div>
-            <button type="submit">Encerrar Leilão</button>
-        </div>
-        <div><br><hr></div>
-        <div id="encerrarLeilão">
-            &nbsp;
-        </div>
-    </form>
-   
+    
     <script charset="utf-8"  src="https://cdn.ethers.io/scripts/ethers-v4.min.js" type="text/javascript"></script>
     <script src="javascript/abi.js"></script>    
     <script src="javascript/blockchain.js"></script>    
@@ -87,6 +70,34 @@
                 console.error(err);
                 campoLance.innerHTML = err;
             });       
+  
+         contrato.maiorLance()
+            .then( (Lance) => 
+            {
+                campomaiorLance.innerHTML = Lance;
+            })
+            .catch( (err) => 
+            {
+                console.error(err);
+                campomaiorLance.innerHTML = err;
+            });       
+                
+<h1>Encerramento do leilao</h1>
+    <form action="#" method="get" id="frmEncerrar" name="frmEncerrar" onsubmit="encerrarLeilão(); return false;">
+        <div>
+        <br>
+        </div>
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <button type="submit">Encerrar Leilão</button>
+        </div>
+        <div><br><hr></div>
+        <div id="encerrarLeilão">
+            &nbsp;
+        </div>
+    </form>
         
     </script>
 
