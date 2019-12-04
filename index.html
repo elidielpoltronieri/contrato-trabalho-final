@@ -12,10 +12,13 @@
 <br/>
 <br/>
    <h2>Status do Leilão</h2>
-    <div>O bem em oferta é: <span id="campoBem">&nbsp;</span></div>
-    <div>O lance mínimo é: <span id="campoLance">&nbsp;</span></div>
+    <div>O bem em oferta é: <span id="campoBem">&nbsp;</span>
+    </div>
+    <div>O lance mínimo é: <span id="campoLance">&nbsp;</span>
+    </div>
     <br/>
-    <div>O valor do último Lance é: <span id="maiorLance">&nbsp;</span></div>
+    <div>O valor do último Lance é: <span id="maiorLance">&nbsp;</span>
+    </div>
     <br/>
     <hr>
         </div>
@@ -23,7 +26,7 @@
             &nbsp;
     </form>
     <h1>Lances</h1>
-    <form action="#" method="get" id="Lance" name="Lance" onsubmit="registrarMudancaStatus(); return false;">
+    <form action="#" method="get" id="Lance" name="Lance" onsubmit="executeLance(); return false;">
         <div>
             <label for="Lance">Oferte um novo Lance: </label>
             <input id="Lance" type= "number">
