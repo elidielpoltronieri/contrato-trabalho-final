@@ -4,6 +4,9 @@ ethereum.enable();
 var signatario = provedor.getSigner();
 var contrato = new ethers.Contract(enderecoContrato, abiContrato, signatario);
 
+
+
+
 var _ContaLeiroeiro = /* var of type address here */ ;
 var _lanceMinimo = /* var of type uint256 here */ ;
 var _bem = /* var of type string here */ ;
