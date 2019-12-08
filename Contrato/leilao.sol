@@ -75,3 +75,4 @@ contract Leilao
         emit novoMaiorLance (msg.sender, msg.value);
         
     }
+}
