@@ -26,7 +26,7 @@
             &nbsp;
     </form>
     <h1>Lances</h1>
-    <form action="#" method="get" id="Lance" name="Lance" onsubmit="executeLance(); return false;">
+    <form name="frmLance" id="frmLance" action="#" method="get" onsubmit="executeLance(); return false;">
         <div>
             <label for="Lance">Oferte um novo Lance: </label>
             <input id="Lance" type= "number">
@@ -38,7 +38,7 @@
             <button type="submit">Registrar Lance</button>
         </div>
         <div><br><hr></div>
-        <div id="caixaStatusTx">
+        <div id="campoLance">
             &nbsp;
         </div>
     </form>
@@ -49,6 +49,32 @@
     <script src="javascript/abi.js"></script>    
     <script src="javascript/blockchain.js"></script>    
     <script>
+<h1>Encerramento do leilao</h1>
+    <form action="#" method="get" id="frmEncerrar" name="frmEncerrar" onsubmit="encerrarLeilão(); return false;">
+        <div>
+        <br>
+        </div>
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <button type="submit">Encerrar Leilão</button>
+        </div>
+        <div><br><hr></div>
+        <div id="encerrarLeilão">
+            &nbsp;
+        </div>
+    </form>
+        
+    </script>
+
+</body>
+</html>
+
+
+
+
+
         var status;
         var campoStatus = document.getElementById("campoBem"); 
         var campoLance = document.getElementById("campoLance");
