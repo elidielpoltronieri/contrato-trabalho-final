@@ -44,17 +44,42 @@ function executeLance() {
 }
 
 
-        contrato.lanceMinimo()
+    var contrato.Bem;
+        var campoBem = document.BemById("campoBem"); 
+        contrato.Bem()
+        
+    var contrato.lanceMinimo;
+        var campolanceMinimo = document.BemById("campolanceMinomo"); 
+
+          contrato.maiorLance()
             .then( (Lance) => 
-            {
-                campoLance.innerHTML = Lance;
-            })
-            .catch( (err) => 
-            {
-                console.error(err);
-                campoLance.innerHTML = err;
-            });       
-  
+                campomaiorLance.innerHTML = Lance;
+
+                  
+<h1>Encerramento do leilao</h1>
+    <form action="#" method="get" id="frmEncerrar" name="frmEncerrar" onsubmit="encerrarLeilão(); return false;">
+        <div>
+        <br>
+        </div>
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <button type="submit">Encerrar Leilão</button>
+        </div>
+        <div><br><hr></div>
+        <div id="encerrarLeilão">
+            &nbsp;
+        </div>
+    </form>
+        
+    </script>
+
+</body>
+</html>
+          
+          
+       
          contrato.maiorLance()
             .then( (Lance) => 
             {
